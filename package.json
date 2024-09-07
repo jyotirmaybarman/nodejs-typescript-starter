@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "NODE_ENV=production node dist/server.js",
     "dev": "nodemon src/server.ts",
     "build": "tsc",
     "typeorm": "npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -d ./src/providers/db/typeorm.data-source.ts",
