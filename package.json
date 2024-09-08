@@ -7,8 +7,8 @@
     "start": "NODE_ENV=production node dist/server.js",
     "dev": "nodemon src/server.ts",
     "build": "tsc",
-    "typeorm": "npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -d ./src/providers/db/typeorm.data-source.ts",
-    "migration:generate": "npm run build && run typeorm -- migration:show | grep '^\\[ \\]' && echo '\nPending migrations found, aborting\nRun the migrations first: `npm run migration:deploy`' && exit 1 || npm run typeorm -- migration:generate src/providers/db/migrations/$npm_config_name",
+    "typeorm": "typeorm-ts-node-commonjs -d ./src/providers/db/typeorm.data-source.ts",
+    "migration:generate": "npm run build && npm run typeorm -- migration:show | grep '^\\[ \\]' && echo '\nPending migrations found, aborting\nRun the migrations first: `npm run migration:deploy`' && exit 1 || npm run typeorm -- migration:generate src/providers/db/migrations/$npm_config_name",
     "migration:deploy": "npm run build && npm run typeorm -- migration:run",
     "migration:undo": "npm run build && npm run typeorm -- migration:revert"
   },
